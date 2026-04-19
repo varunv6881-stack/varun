@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    text-align: center;
+    color: white;
+    margin-top: 50px;
+}
+
+.container {
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+#weatherResult {
+    margin-top: 20px;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌦️ Weather App</h1>
+
+<div class="container">
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()">Search</button>
+    <button onclick="getLocationWeather()">Use My Location</button>
+
+    <div id="weatherResult"></div>
+</div>
+
+<script>
+const apiKey = "YOUR_API_KEY_HERE"; // 🔴 Replace this
+
+function getWeather() {
+    const city = document.getElementById("city").value;
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    .then(res => res.json())
+    .then(data => displayWeather(data))
+    .catch(() => alert("City not found"));
+}
+
+function getLocationWeather() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+            .then(res => res.json())
+            .then(data => displayWeather(data));
+        });
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+
+function displayWeather(data) {
+    const result = document.getElementById("weatherResult");
+
+    result.innerHTML = `
+        <h2>${data.name}</h2>
+        <p>🌡 Temperature: ${data.main.temp} °C</p>
+        <p>🌥 Condition: ${data.weather[0].main}</p>
+        <p>💧 Humidity: ${data.main.humidity}%</p>
+        <p>🌬 Wind Speed: ${data.wind.speed} m/s</p>
+    `;
+}
+</script>
+
+</body>
+</html>
