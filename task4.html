@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+nav {
+    background: #222;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Home */
+#home {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+}
+
+#home img {
+    width: 150px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+/* About */
+#about {
+    background: #f4f4f4;
+}
+
+/* Skills */
+#skills {
+    background: #ddd;
+}
+
+.skill-box {
+    display: inline-block;
+    background: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+/* Projects */
+#projects {
+    background: #f4f4f4;
+}
+
+.project {
+    background: white;
+    margin: 10px auto;
+    padding: 15px;
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* Contact */
+#contact {
+    background: #222;
+    color: white;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- Home -->
+<section id="home">
+    <h1>Hello, I'm Your Name</h1>
+    <p>Web Developer | AI/ML Enthusiast</p>
+    <img src="https://via.placeholder.com/150" alt="Profile Photo">
+</section>
+
+<!-- About -->
+<section id="about">
+    <h2>About Me</h2>
+    <p>
+        I am a passionate developer with skills in web development and artificial intelligence.
+        I am currently pursuing my degree and building real-world projects.
+    </p>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+    <h2>My Skills</h2>
+    <div class="skill-box">HTML</div>
+    <div class="skill-box">CSS</div>
+    <div class="skill-box">JavaScript</div>
+    <div class="skill-box">Python</div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+    <h2>My Projects</h2>
+
+    <div class="project">
+        <h3>Stopwatch App</h3>
+        <p>A simple stopwatch built using HTML, CSS, and JavaScript.</p>
+    </div>
+
+    <div class="project">
+        <h3>Tic-Tac-Toe Game</h3>
+        <p>An interactive tic-tac-toe game with winner detection.</p>
+    </div>
+
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: yourname@email.com</p>
+    <button onclick="showMessage()">Say Hello</button>
+</section>
+
+<script>
+function showMessage() {
+    alert("Thanks for visiting my portfolio!");
+}
+</script>
+
+</body>
+</html>
