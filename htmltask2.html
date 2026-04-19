@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        #display {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .start { background-color: #28a745; }
+        .pause { background-color: #ffc107; }
+        .reset { background-color: #dc3545; }
+        .lap   { background-color: #17a2b8; }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        li {
+            background: rgba(255,255,255,0.2);
+            margin: 5px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⏱ Stopwatch</h1>
+    <div id="display">00:00:00</div>
+
+    <button class="start" onclick="start()">Start</button>
+    <button class="pause" onclick="pause()">Pause</button>
+    <button class="reset" onclick="reset()">Reset</button>
+    <button class="lap" onclick="lap()">Lap</button>
+
+    <h2>Lap Times</h2>
+    <ul id="laps"></ul>
+
+<script>
+    let seconds = 0;
+    let minutes = 0;
+    let hours = 0;
+    let timer = null;
+
+    function updateDisplay() {
+        let h = hours < 10 ? "0" + hours : hours;
+        let m = minutes < 10 ? "0" + minutes : minutes;
+        let s = seconds < 10 ? "0" + seconds : seconds;
+
+        document.getElementById("display").innerText = `${h}:${m}:${s}`;
+    }
+
+    function start() {
+        if (timer !== null) return;
+
+        timer = setInterval(() => {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+            }
+            if (minutes == 60) {
+                minutes = 0;
+                hours++;
+            }
+            updateDisplay();
+        }, 1000);
+    }
+
+    function pause() {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    function reset() {
+        pause();
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
+        updateDisplay();
+        document.getElementById("laps").innerHTML = "";
+    }
+
+    function lap() {
+        let lapTime = document.getElementById("display").innerText;
+        let li = document.createElement("li");
+        li.innerText = lapTime;
+        document.getElementById("laps").appendChild(li);
+    }
+</script>
+
+</body>
+</html>
